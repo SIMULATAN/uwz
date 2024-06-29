@@ -1,4 +1,4 @@
-name: Builder
+name: HomeAssistant Addon
 
 env:
   BUILD_ARGS: "--test"
@@ -8,6 +8,9 @@ on:
   - push
   - pull_request
 
+permissions:
+  checks: read
+
 jobs:
   init:
     runs-on: ubuntu-latest
@@ -16,7 +19,7 @@ jobs:
       changed_addons: ${{ steps.changed_addons.outputs.addons }}
       changed: ${{ steps.changed_addons.outputs.changed }}
     steps:
-      - name: Wait for tests to succeed
+      - name: Wait for docker image task to succeed
         uses: lewagon/wait-on-check-action@v1.3.4
         with:
           ref: ${{ github.ref }}
