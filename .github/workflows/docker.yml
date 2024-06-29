@@ -4,7 +4,7 @@ name: Docker
 on: push
 
 env:
-  REGISTRY_IMAGE: ghcr.io/${{ github.repository_owner }}/uwz
+  REGISTRY_IMAGE: ghcr.io/${{ github.repository }}
 
 jobs:
   build:
@@ -22,6 +22,8 @@ jobs:
         run: |
           platform=${{ matrix.platform }}
           echo "PLATFORM_PAIR=${platform//\//-}" >> $GITHUB_ENV
+          # lowercase the registry image
+          echo "REGISTRY_IMAGE=${REGISTRY_IMAGE,,}" >> $GITHUB_ENV
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v5
