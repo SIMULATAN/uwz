@@ -1,3 +1,4 @@
+# https://github.com/home-assistant/addons-example/blob/main/.github/workflows/builder.yaml
 name: HomeAssistant Addon
 
 env:
@@ -71,7 +72,7 @@ jobs:
     strategy:
       matrix:
         addon: ${{ fromJson(needs.init.outputs.changed_addons) }}
-        arch: ["aarch64", "amd64"]
+        arch: ["amd64"]
     permissions:
       contents: read
       packages: write
