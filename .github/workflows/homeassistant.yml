@@ -74,8 +74,9 @@ jobs:
 
       - name: Prepare build
         run: |
-          # lowercase registry image
-          echo "IMAGE=${{ github.repository }}" | tr '[:upper:]' '[:lower:]' >> $GITHUB_ENV
+          # lowercase registry username
+          registry_username=$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')
+          echo "REGISTRY_USERNAME=${registry_username}" >> $GITHUB_ENV
 
       - name: Build ${{ matrix.addon }}
         if: steps.check.outputs.build_arch == 'true'
@@ -86,5 +87,5 @@ jobs:
             --${{ matrix.arch }} \
             --target /data/${{ matrix.addon }} \
             --image "${{ steps.check.outputs.image }}" \
-            --docker-hub "ghcr.io/${{ env.IMAGE }}-hass-${{ matrix.arch }}" \
+            --docker-hub "ghcr.io/${{ env.REGISTRY_USERNAME }}" \
             --addon
