@@ -4,6 +4,8 @@ version: "1.0.0"
 image: "ghcr.io/simulatan/uwz-hass-{arch}"
 slug: "uwz"
 init: false
+args:
+  BINARY_IMAGE: "ghcr.io/simulatan/uwz:latest"
 arch:
   - amd64
   - aarch64
