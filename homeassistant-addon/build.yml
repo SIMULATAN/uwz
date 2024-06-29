@@ -5,3 +5,5 @@ build_from:
   armhf: "homeassistant/armhf-base-ubuntu:20.04"
   armv7: "homeassistant/armv7-base-ubuntu:20.04"
   i386: "homeassistant/i386-base-ubuntu:20.04"
+args:
+  BINARY_IMAGE: "ghcr.io/simulatan/uwz:latest"
