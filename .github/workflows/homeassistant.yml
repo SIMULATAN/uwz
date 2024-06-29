@@ -78,7 +78,7 @@ jobs:
           registry_username=$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')
           echo "REGISTRY_USERNAME=${registry_username}" >> $GITHUB_ENV
           # change the binary image tag to the correct one
-          sed -i "s/\/uwz:latest/\/uwz:${{ github.ref_name }}" "${{ matrix.addon }}/config.yml"
+          sed -i "s/\/uwz:latest/\/uwz:${{ github.ref_name }}/g" "${{ matrix.addon }}/config.yml"
 
       - name: Build ${{ matrix.addon }}
         if: steps.check.outputs.build_arch == 'true'
