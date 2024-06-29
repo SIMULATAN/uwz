@@ -11,6 +11,7 @@ on:
 
 permissions:
   checks: read
+  contents: read
 
 jobs:
   init:
@@ -126,5 +127,5 @@ jobs:
             --${{ matrix.arch }} \
             --target /data/${{ matrix.addon }} \
             --image "${{ steps.check.outputs.image }}" \
-            --docker-hub "ghcr.io/${{ env.IMAGE }}" \
+            --docker-hub "ghcr.io/${{ env.IMAGE }}-hass-${{ matrix.arch }}" \
             --addon
