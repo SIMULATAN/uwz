@@ -7,7 +7,9 @@ COPY entrypoint.sh .
 
 RUN apt update && apt install -y libcurl4-gnutls-dev && rm -rf /var/lib/apt/lists/*
 
-COPY --from=ghcr.io/simulatan/uwz /app/uwz uwz
+ARG SOURCE_IMAGE_TAG
+
+COPY --from=ghcr.io/simulatan/uwz:$SOURCE_IMAGE_TAG /app/uwz uwz
 RUN chmod +x uwz
 
 ENTRYPOINT [ "/app/entrypoint.sh" ]
