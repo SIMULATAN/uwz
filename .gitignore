@@ -1,0 +1,6 @@
+.kotlin
+.idea
+build/
+.gradle/
+
+config.json

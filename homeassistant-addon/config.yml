@@ -1,0 +1,28 @@
+name: "UWZ"
+description: "Shows weather alerts from UWZ.at"
+version: "1.0.0"
+image: "ghcr.io/simulatan/uwz-hass-{arch}"
+slug: "uwz"
+init: false
+arch:
+  - amd64
+  - aarch64
+  - armv7
+options:
+  period: 30
+  point:
+    long: 0
+    lat: 0
+  homeassistant:
+    host: "http://homeassistant:8123"
+    token: ""
+    entity: "sensor.uwz_status_text"
+schema:
+  period: int(0,)
+  point:
+    long: float(0,)
+    lat: float(0,)
+  homeassistant:
+    host: url
+    token: password
+    entity: str
