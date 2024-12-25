@@ -1,4 +1,4 @@
-package polygon
+package me.simulatan.uwz.polygon
 
 /**
  * The 2D polygon.

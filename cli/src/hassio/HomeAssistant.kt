@@ -3,12 +3,16 @@ package hassio
 import HomeAssistantConfig
 import io.ktor.client.*
 import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
-import io.ktor.http.*
+import io.ktor.client.request.header
+import io.ktor.client.request.post
+import io.ktor.client.request.setBody
+import io.ktor.client.statement.bodyAsText
+import io.ktor.http.ContentType
+import io.ktor.http.HttpHeaders
+import io.ktor.http.isSuccess
 import io.ktor.serialization.kotlinx.json.*
-import jsonCodec
 import kotlinx.serialization.Serializable
+import me.simulatan.uwz.jsonCodec
 
 val client = HttpClient {
 	install(ContentNegotiation) {

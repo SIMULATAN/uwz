@@ -1,19 +1,16 @@
-import hassio.sendWarningState
+package me.simulatan.uwz
+
 import io.ktor.client.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.serialization.kotlinx.json.*
-import io.ktor.utils.io.core.*
-import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.Clock
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.plus
 import kotlinx.serialization.modules.polymorphic
-import okio.FileSystem
-import okio.Path.Companion.toPath
-
+import me.simulatan.uwz.polygon.Point
 
 val jsonCodec = Json {
 	ignoreUnknownKeys = true
@@ -24,23 +21,17 @@ val jsonCodec = Json {
 		}
 	}
 }
+
 val client = HttpClient {
 	install(ContentNegotiation) {
 		json(jsonCodec)
 	}
 }
 
-fun main() = runBlocking {
-	val config: Config = FileSystem.SYSTEM.read("config.json".toPath()) {
-		val content = readUtf8()
-		jsonCodec.decodeFromString(content)
-	}
-
+suspend fun getWarningLevel(point: Point): String {
 	val geojsonBytes = client.get("https://uwz.at/data/warnings/AT/AT_today_all.geojson?cache=${Clock.System.now().epochSeconds}")
-		.readBytes()
-	val geojson: FeatureCollection = jsonCodec.decodeFromString(String(geojsonBytes))
-
-	val point = config.point
+		.readRawBytes()
+	val geojson: FeatureCollection = jsonCodec.decodeFromString(geojsonBytes.decodeToString())
 
 	val matching = geojson.features.sortedByDescending { it.properties.level }.firstOrNull {
 		when (val geometry = it.geometry) {
@@ -57,8 +48,5 @@ fun main() = runBlocking {
 		else -> "Unknown warning level"
 	}
 
-	println("Warning level: $level")
-	if (config.homeassistant != null) {
-		sendWarningState(config.homeassistant, level)
-	}
+	return level
 }

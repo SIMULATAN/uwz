@@ -1,0 +1,29 @@
+product:
+  type: lib
+  platforms:
+    - linuxX64
+    - jvm
+
+settings:
+  kotlin:
+    languageVersion: 2.0
+    serialization: json
+    linkerOpts:
+      - -l:libcurl.so.4
+  publishing:
+    group: me.simulatan.uwz
+    version: 1.0.0
+
+dependencies:
+  - org.jetbrains.kotlinx:kotlinx-datetime:0.6.0-RC.2
+  - io.ktor:ktor-client-core:3.0.3
+  - io.ktor:ktor-client-content-negotiation:3.0.3
+  - io.ktor:ktor-serialization-kotlinx-json:3.0.3
+  - io.ktor:ktor-client-logging:3.0.3
+  - com.squareup.okio:okio:3.9.0
+
+dependencies@jvm:
+  - io.ktor:ktor-client-cio:3.0.3
+
+dependencies@linuxX64:
+  - io.ktor:ktor-client-curl:3.0.3

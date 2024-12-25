@@ -1,4 +1,6 @@
-package polygon
+package me.simulatan.uwz.polygon
+
+import kotlinx.serialization.Serializable
 
 /**
  * Point on 2D landscape
@@ -7,7 +9,8 @@ package polygon
  *
  * @author Roman Kushnarenko (sromku@gmail.com)
  */
-class Point(var long: Double, var lat: Double) {
+@Serializable
+data class Point(var long: Double, var lat: Double) {
 	override fun toString(): String {
 		return "($long,$lat)"
 	}

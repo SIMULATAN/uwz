@@ -1,5 +1,7 @@
-import polygon.Point
-import polygon.Polygon
+package me.simulatan.uwz
+
+import me.simulatan.uwz.polygon.Point
+import me.simulatan.uwz.polygon.Polygon
 
 fun pointInPolygon(point: Point, polygon: Geometry.Polygon): Boolean {
 	return polygon.coordinates.any { coords ->

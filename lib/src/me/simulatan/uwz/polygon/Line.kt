@@ -1,4 +1,4 @@
-package polygon
+package me.simulatan.uwz.polygon
 
 /**
  * Line is defined by starting point and ending point on 2D dimension.<br></br>
