@@ -12,7 +12,7 @@ pluginManagement {
 }
 
 plugins {
-  id("org.jetbrains.amper.settings.plugin").version("0.5.0")
+  id("org.jetbrains.amper.settings.plugin").version("0.7.0")
 }
 
 include("lib", "cli")

@@ -4,6 +4,7 @@ import me.simulatan.uwz.getWarningLevel
 import me.simulatan.uwz.jsonCodec
 import okio.FileSystem
 import okio.Path.Companion.toPath
+import okio.SYSTEM
 
 fun main() = runBlocking {
 	val config: Config = FileSystem.SYSTEM.read("config.json".toPath()) {
