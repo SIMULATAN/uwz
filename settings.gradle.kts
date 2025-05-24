@@ -15,6 +15,6 @@ plugins {
   id("org.jetbrains.amper.settings.plugin").version("0.7.0")
 }
 
-include("lib", "cli")
+include("lib", "cli", "worker")
 // hacky workaround to publish as uwz-$platform
 findProject(":lib")?.name = "uwz"

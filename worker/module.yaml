@@ -1,0 +1,12 @@
+product:
+  type: lib
+  platforms:
+    - js
+
+settings:
+  kotlin:
+    languageVersion: 2.2
+
+dependencies:
+  - ../lib
+  - org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0

@@ -3,6 +3,8 @@ product:
   platforms:
     - linuxX64
     - jvm
+    - wasm
+    - js
 
 settings:
   kotlin:
@@ -27,3 +29,9 @@ dependencies@jvm:
 
 dependencies@linuxX64:
   - io.ktor:ktor-client-curl:3.1.3
+
+dependencies@js:
+  - io.ktor:ktor-client-js:3.1.3
+
+dependencies@wasm:
+  - io.ktor:ktor-client-js:3.1.3
