@@ -8,7 +8,6 @@ product:
 
 settings:
   kotlin:
-    languageVersion: 2.2
     serialization: json
     linkerOpts:
       - -l:libcurl.so.4

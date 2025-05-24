@@ -28,7 +28,7 @@ val client = HttpClient {
 	}
 }
 
-suspend fun getWarningLevel(point: Point): String {
+suspend fun getWarningLevel(point: Point): WarningLevel {
 	val geojsonBytes = client.get("https://uwz.at/data/warnings/AT/AT_today_all.geojson?cache=${Clock.System.now().epochSeconds}")
 		.readRawBytes()
 	val geojson: FeatureCollection = jsonCodec.decodeFromString(geojsonBytes.decodeToString())
@@ -39,14 +39,7 @@ suspend fun getWarningLevel(point: Point): String {
 			is Geometry.MultiPolygon -> pointInMultiPolygon(point, geometry)
 		}
 	}
-	val level = when {
-		matching == null -> "No warning"
-		matching.properties.level == 0 -> "Information"
-		matching.properties.level == 1 -> "Warning"
-		matching.properties.level == 2 -> "Severe warning"
-		matching.properties.level == 3 -> "Weltuntergang"
-		else -> "Unknown warning level"
-	}
 
-	return level
+	return WarningLevel.entries.firstOrNull { it.level == matching?.properties?.level }
+		?: WarningLevel.NO_WARNING
 }

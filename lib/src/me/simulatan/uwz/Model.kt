@@ -25,3 +25,14 @@ data class FeatureProperties(val level: Int)
 data class Feature(val properties: FeatureProperties, val geometry: Geometry)
 @Serializable
 data class FeatureCollection(val features: List<Feature>)
+
+enum class WarningLevel(
+	val level: Int?,
+	val description: String
+) {
+	NO_WARNING(null, "No warning"),
+	INFORMATION(0, "Information"),
+	WARNING(1, "Warning"),
+	SEVERE_WARNING(2, "Severe warning"),
+	WORLD_END(3, "Weltuntergang")
+}

@@ -16,6 +16,6 @@ fun main() = runBlocking {
 
 	println("Warning level: $level")
 	if (config.homeassistant != null) {
-		sendWarningState(config.homeassistant, level)
+		sendWarningState(config.homeassistant, level.description)
 	}
 }
